@@ -1,0 +1,22 @@
+api.mapkey('<alt-w>', 'Money', function() {
+    alert('hi');
+    var str = document.getElementById('docEditor').textContent;
+var result = str.match( /[^\.!\?]+[\.!\?]+/g ).map(x => x.trim());
+
+var unique = Array.from(new Set(result));
+var dubbs = result.filter((v,i,a) => a.indexOf(v) !==i);
+
+var text = document.getElementById('docEditor').innerHTML;
+re = new RegExp('</?mark>', 'g');
+
+newText = text.replace(re, '')
+document.getElementById('docEditor').innerHTML = newText;
+
+
+for (var i of dubbs){
+	var text = document.getElementById('docEditor').innerHTML;
+	re = new RegExp(i, 'g');
+	newText = text.replace(re, `<mark>${i}</mark>`);
+	document.getElementById('docEditor').innerHTML = newText;
+};
+});
